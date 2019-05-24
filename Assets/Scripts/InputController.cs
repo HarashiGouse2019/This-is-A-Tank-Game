@@ -7,6 +7,7 @@ public class InputController : MonoBehaviour
     public TankData pawn;
     public TankMover tankMover;
     public new Camera_Follow camera;
+    public bool WASD = true;
 
     Transform pawnTf;
 
