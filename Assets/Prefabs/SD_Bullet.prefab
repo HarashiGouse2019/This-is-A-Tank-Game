@@ -87,6 +87,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2949198690053848021}
   - component: {fileID: 7222445259909941757}
+  - component: {fileID: 3181059920204464034}
+  - component: {fileID: 6042840202467968641}
   m_Layer: 0
   m_Name: SD_Bullet
   m_TagString: Untagged
@@ -101,9 +103,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2949198690053744629}
-  m_LocalRotation: {x: -0, y: 0.13999556, z: -0, w: 0.9901521}
-  m_LocalPosition: {x: -1395.8079, y: 4490.3975, z: -1704.0022}
-  m_LocalScale: {x: 0.28, y: 0.28, z: 0.28}
+  m_LocalRotation: {x: -0, y: -0.40552098, z: -0, w: 0.91408575}
+  m_LocalPosition: {x: 508.2761, y: 4531.0156, z: -785.77167}
+  m_LocalScale: {x: 0.28, y: 0.28, z: 0.31289998}
   m_Children:
   - {fileID: 2949198690053848023}
   - {fileID: 2949198690053848017}
@@ -127,6 +129,35 @@ MonoBehaviour:
   shoot: {fileID: 0}
   timer: {fileID: 0}
   data: {fileID: 0}
+--- !u!65 &3181059920204464034
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2949198690053744629}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18.8, y: 5.35, z: 30.63}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &6042840202467968641
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2949198690053744629}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
 --- !u!1 &2949198690053744631
 GameObject:
   m_ObjectHideFlags: 0

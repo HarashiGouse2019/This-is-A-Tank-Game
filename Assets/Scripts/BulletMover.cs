@@ -41,6 +41,13 @@ public class BulletMover : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Obstacle")
+        {
+            Destroy(gameObject);
+        }
+    }
     void OnDestroy()
     {
         GameManager.instance.bulletInstance--;
