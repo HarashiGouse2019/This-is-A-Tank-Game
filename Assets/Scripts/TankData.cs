@@ -8,18 +8,9 @@ public class TankData : MonoBehaviour
     public float reverseMoveSpeed;
     public float shotsPerSecond;
     public float rotateSpeed;
-    public Transform tf;
+    public float turretRotateSpeed;
+    public Transform bodytf;
+    public Transform turrettf;
     public TankMover mover;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public TurrentMover turretMover;
 }

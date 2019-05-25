@@ -16,7 +16,7 @@ public class TankMover : MonoBehaviour
     public void Move(Vector3 worldDirectionToMove)
     {
         //Calculate our direction based on our rotation (so 0,0,1 becomes our forward)
-        Vector3 directionToMove = data.tf.TransformDirection(worldDirectionToMove);
+        Vector3 directionToMove = data.bodytf.TransformDirection(worldDirectionToMove);
 
         //Actually move
         characterController.SimpleMove(directionToMove);
@@ -25,6 +25,6 @@ public class TankMover : MonoBehaviour
 
     public void Rotate(float direction)
     {
-        data.tf.Rotate(new Vector3(0, direction * data.rotateSpeed * Time.deltaTime, 0));
+        data.bodytf.Rotate(new Vector3(0, direction * data.rotateSpeed * Time.deltaTime, 0));
     }
 }
