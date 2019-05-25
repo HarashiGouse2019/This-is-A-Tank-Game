@@ -12,5 +12,5 @@ public class TankData : MonoBehaviour
     public Transform bodytf;
     public Transform turrettf;
     public TankMover mover;
-    public TurrentMover turretMover;
+    public TurretMover turretMover;
 }

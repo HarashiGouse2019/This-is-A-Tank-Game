@@ -70,7 +70,7 @@
     <Compile Include="Assets\Scripts\Shoot Bullet\Shoot.cs" />
     <Compile Include="Assets\Scripts\Tank Scripts\TankData.cs" />
     <Compile Include="Assets\Scripts\Tank Scripts\TankMover.cs" />
-    <Compile Include="Assets\Scripts\Turret Script\TurrentMover.cs" />
+    <Compile Include="Assets\Scripts\Turret Script\TurretMover.cs" />
     <None Include="Assets\Materials\QS\ComposerUI.txt" />
     <None Include="Assets\Materials\QS\QS-Textures-Grass-FREE.txt" />
     <Reference Include="Unity.Timeline.Editor">

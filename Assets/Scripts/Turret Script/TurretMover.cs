@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurrentMover : MonoBehaviour
+public class TurretMover : MonoBehaviour
 {
     public Transform tf;
     public TankData data;

@@ -26,13 +26,12 @@ public class Camera_Follow : MonoBehaviour
 
     void Start()
     {
-        target = FindObjectOfType<TurrentMover>().gameObject;
+        target = FindObjectOfType<TurretMover>().gameObject;
         data = FindObjectOfType<TankData>();
     }
 
     void FixedUpdate()
     {
-        camRotationSpeed = data.turretRotateSpeed;
         Vector3 setCoordinate;
         Vector3 smoothPosition;
         setCoordinate = target.transform.position + offset;
@@ -42,8 +41,10 @@ public class Camera_Follow : MonoBehaviour
 
     public void Rotate(float direction)
     {
+        angleValue += direction * camRotationSpeed;
+        offset = new Vector3(Mathf.Sin(angleValue), offset.y + Mathf.Cos(angleValue));
         transform.LookAt(target.transform);
-        transform.Translate(new Vector3(direction, 0) * camRotationSpeed * Time.deltaTime);
+        transform.Translate(new Vector3(-direction, 0,0) * camRotationSpeed * Time.deltaTime);
     }
 }
 
