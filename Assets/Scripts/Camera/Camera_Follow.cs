@@ -5,13 +5,15 @@ public class Camera_Follow : MonoBehaviour
 {
     public static Camera_Follow camerafollow;
 
+    public TankData data;
+
     //The Targeted GameObject to manipulate its position through it's Transform Component
     public GameObject target;
 
     //Used to set the duration of the camera smoothing out and in towards the player
     public float smoothOutDuration = 0.125f;
 
-    public float camRotationSpeed = 1f;
+    public float camRotationSpeed;
 
     public float radius;
 
@@ -24,11 +26,13 @@ public class Camera_Follow : MonoBehaviour
 
     void Start()
     {
-        target = FindObjectOfType<TankMover>().gameObject;
+        target = FindObjectOfType<TurrentMover>().gameObject;
+        data = FindObjectOfType<TankData>();
     }
 
     void FixedUpdate()
     {
+        camRotationSpeed = data.turretRotateSpeed;
         Vector3 setCoordinate;
         Vector3 smoothPosition;
         setCoordinate = target.transform.position + offset;
@@ -38,7 +42,8 @@ public class Camera_Follow : MonoBehaviour
 
     public void Rotate(float direction)
     {
-        transform.Rotate(0, camRotationSpeed * direction, 0);
+        transform.LookAt(target.transform);
+        transform.Translate(new Vector3(direction, 0) * camRotationSpeed * Time.deltaTime);
     }
 }
 

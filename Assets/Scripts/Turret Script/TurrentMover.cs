@@ -11,7 +11,7 @@ public class TurrentMover : MonoBehaviour
     public new Camera_Follow camera;
     public Vector3 center;
     public float angle = 0f;
-    public float radius = 1f;
+    public float radius = 30f;
 
 
     // Start is called before the first frame update
@@ -25,13 +25,8 @@ public class TurrentMover : MonoBehaviour
     // Update is called once per frame
     public void Rotate(float direction)
     {
-        //Camera movement
-        center = tf.position;
-        angle += data.turretRotateSpeed * Time.deltaTime;
-        var offset = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle)) * radius;
-        tf.position = center + offset;
-
         //Actual turret movement
         data.turrettf.Rotate(new Vector3(0, direction * data.turretRotateSpeed * Time.deltaTime, 0));
+        camera.Rotate(direction);
     }
 }
