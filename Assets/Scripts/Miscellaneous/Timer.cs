@@ -4,28 +4,32 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    public float currentTime = 0;
-    public float resetTime;
-    public bool timeStarted = false;
+    public float currentTime = 0; //Current time
+    public float resetTime; //The reset time
+    public bool timeStarted = false; //If the time has started
 
     private void Start()
     {
-        resetTime = currentTime;
+        //Current time, when initialized, is set to 0. At the start of the game, assign the value of current time to reset time.
+        resetTime = currentTime; 
     }
+    
     private void Update()
     {
         if (timeStarted)
         {
-            currentTime += Time.deltaTime;
+            currentTime += Time.deltaTime; //current is increasing by Time.deltaTime.
         }
     }
 
     public void StartTimer()
     {
+        //Starts the timer
         timeStarted = true;
     }
     public void ResetTime()
     {
+        //Stops the timers, and returns the resetTime value back to the currentTime.
         timeStarted = false;
         currentTime = resetTime;
     }

@@ -103,8 +103,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2949198690053744629}
-  m_LocalRotation: {x: -0, y: 0.51387477, z: -0, w: 0.8578652}
-  m_LocalPosition: {x: -1221.8265, y: 4585.2915, z: -890.9612}
+  m_LocalRotation: {x: -0, y: 0.13695987, z: -0, w: 0.99057657}
+  m_LocalPosition: {x: -914.14496, y: 4583.753, z: -1049.1642}
   m_LocalScale: {x: 0.28, y: 0.28, z: 0.31289998}
   m_Children:
   - {fileID: 2949198690053848023}
@@ -129,6 +129,7 @@ MonoBehaviour:
   shoot: {fileID: 0}
   timer: {fileID: 0}
   data: {fileID: 0}
+  enemySide: 0
 --- !u!65 &3181059920204464034
 BoxCollider:
   m_ObjectHideFlags: 0

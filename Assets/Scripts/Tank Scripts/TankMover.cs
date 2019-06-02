@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class TankMover : MonoBehaviour
 {
-    public CharacterController characterController;
-    public Transform tf;
-    public TankData data;
+    public CharacterController characterController; //Reference our character controller
+    public Transform tf; //Reference our transform
+    public TankData data; //Reference our tank data component
 
     private void Start()
     {
-        tf = GetComponent<Transform>();
+        tf = GetComponent<Transform>(); //Grab our tranform and tank data
         data = GetComponent<TankData>();
     }
     public void Move(Vector3 worldDirectionToMove)
@@ -25,6 +25,6 @@ public class TankMover : MonoBehaviour
 
     public void Rotate(float direction)
     {
-        data.bodytf.Rotate(new Vector3(0, direction * data.rotateSpeed * Time.deltaTime, 0));
+        data.bodytf.Rotate(new Vector3(0, direction * data.rotateSpeed * Time.deltaTime, 0)); //Rotate in a set direction and speed over time on the y axis 
     }
 }

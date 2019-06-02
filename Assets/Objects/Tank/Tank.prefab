@@ -106,6 +106,7 @@ Transform:
   m_Children:
   - {fileID: 400008}
   - {fileID: 400006}
+  - {fileID: 5630229787250813390}
   m_Father: {fileID: 400010}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -337,8 +338,9 @@ GameObject:
   m_Component:
   - component: {fileID: 400012}
   - component: {fileID: 14300000}
-  - component: {fileID: 1637190202934414675}
-  - component: {fileID: 515578110511959662}
+  - component: {fileID: 3227030152300084573}
+  - component: {fileID: 5854160323375015980}
+  - component: {fileID: 5939922205501676396}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -379,7 +381,37 @@ CharacterController:
   m_SkinWidth: 0.001
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1637190202934414675
+--- !u!114 &3227030152300084573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7bdcca626bbd14f98d6de1fcc6ad8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointOfFire: {fileID: 5630229787250813390}
+  bulletPrefab: {fileID: 7222445259909941757, guid: 7028ded00d4341542b5159c14b0250f0,
+    type: 3}
+--- !u!114 &5854160323375015980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03692d274b079fe4181dda7b1a4965b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTime: 0
+  resetTime: 0
+  timeStarted: 0
+--- !u!114 &5939922205501676396
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -391,27 +423,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5564961bdb35dc14e9e1fcb1d83803bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 500
-  reverseMoveSpeed: 500
+  moveSpeed: 0
+  reverseMoveSpeed: 0
   shotsPerSecond: 0
-  rotateSpeed: 10
-  tf: {fileID: 400012}
-  mover: {fileID: 515578110511959662}
---- !u!114 &515578110511959662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3d9272782c50f341ad73383aeb32e71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterController: {fileID: 14300000}
-  tf: {fileID: 400012}
-  data: {fileID: 1637190202934414675}
+  rotateSpeed: 0
+  turretRotateSpeed: 0
+  bodytf: {fileID: 400012}
+  turrettf: {fileID: 400012}
+  mover: {fileID: 0}
+  turretMover: {fileID: 0}
+  mode: 1
 --- !u!1 &100014
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,3 +510,33 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &3770322343568454657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5630229787250813390}
+  m_Layer: 0
+  m_Name: pointOfFire
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5630229787250813390
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3770322343568454657}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.04, y: 0.51, z: 0.687}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400002}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

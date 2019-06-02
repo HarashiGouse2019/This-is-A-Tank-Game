@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TurretMover : MonoBehaviour
 {
-    public Transform tf;
-    public TankData data;
+    public Transform tf; //Turret transform
+    public TankData data; //And our tank data
 
     //For the camera
     public new Camera_Follow camera;
@@ -17,9 +17,9 @@ public class TurretMover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tf = GetComponent<Transform>();
-        data = GetComponentInParent<TankData>();
-        camera = camera.GetComponent<Camera_Follow>();
+        tf = GetComponent<Transform>(); //Grab our transform
+        data = GetComponentInParent<TankData>(); //Grab the tank data that is located in our parent gameobject
+        camera = camera.GetComponent<Camera_Follow>(); //Reference the camera
     }
 
     // Update is called once per frame
