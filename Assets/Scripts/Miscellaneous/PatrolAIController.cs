@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class PatrolAIController : AIController
 {
-    public enum LoopType { Loop, Stop, PingPong, Random};
-    public List<Transform> wayPoints;
-    public int currentWayPoint;
-    public float cutoff;
-    public bool isForward;
-
-    public LoopType looptype;
 
     private void Start()
     {
@@ -19,7 +12,27 @@ public class PatrolAIController : AIController
 
     private void Update()
     {
-        
+        switch(currentState)
+        {
+            case AiStates.Idle:
+                //Do a special update
+                //Check for transitions
+                if (timer.currentTime > stateStartTime + 3f)
+                {
+                    timer.ResetTime(true);
+                    ChangeState(AiStates.Patrol);
+                }
+                break;
+            case AiStates.Patrol:
+                //Do a special update
+                Patrol();
+                //Check For Transitions
+                // TODO: Add some transitions
+                break;
+
+
+
+        }
     }
 
     private void Patrol()

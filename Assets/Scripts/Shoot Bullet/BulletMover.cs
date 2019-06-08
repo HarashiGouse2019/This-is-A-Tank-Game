@@ -38,7 +38,7 @@ public class BulletMover : MonoBehaviour
         timer.StartTimer(); //Start our timer
         if (timer.currentTime > seconds) //If the timer's time is greater than our destroy duration
         {
-            timer.ResetTime(); //Reset the time
+            timer.ResetTime(false); //Reset the time
             Destroy(gameObject); //Destory this object
         }
     }

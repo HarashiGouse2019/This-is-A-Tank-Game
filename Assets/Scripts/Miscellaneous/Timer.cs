@@ -27,10 +27,17 @@ public class Timer : MonoBehaviour
         //Starts the timer
         timeStarted = true;
     }
-    public void ResetTime()
+    public void ResetTime(bool continueTimer)
     {
         //Stops the timers, and returns the resetTime value back to the currentTime.
-        timeStarted = false;
+        switch(continueTimer)
+        {
+            case false:
+                timeStarted = false;
+                break;
+            default:
+                break;
+        }
         currentTime = resetTime;
     }
 }

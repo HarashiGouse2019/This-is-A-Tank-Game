@@ -34,7 +34,7 @@ public class EnemyShoot : MonoBehaviour
         if (timer.currentTime > secondsUntilShoot) //If timer's current time is greater than our set duration
         {
             ShootOutObject(ebulletPrefab.gameObject); //Shoot a bullet
-            timer.ResetTime(); //Reset the timer
+            timer.ResetTime(false); //Reset the timer
         }
     }
 
