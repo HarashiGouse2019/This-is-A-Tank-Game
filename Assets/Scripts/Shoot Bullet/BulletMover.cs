@@ -52,6 +52,11 @@ public class BulletMover : MonoBehaviour
             case false:
                 if (other.gameObject.tag == "Obstacle" || other.gameObject.tag == "Enemy")
                 {
+                    if (other.gameObject.GetComponent<ChilledOutAIController>() != null)
+                    {
+                        ChilledOutAIController enemy = other.gameObject.GetComponent<ChilledOutAIController>();
+                        enemy.ChangeState(AIController.AiStates.Attack);
+                    }
                     Destroy(gameObject);
                 }
                 break;

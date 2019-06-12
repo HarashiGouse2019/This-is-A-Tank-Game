@@ -11,6 +11,7 @@ public class TankData : MonoBehaviour
     public float rotateSpeed; //How fast we turn
     public float turretRotateSpeed; //How fast our turret turns
     public float health; //Our health
+    public float maxHealth; //Our Max Health
     public float damage; //The amount of damage we can inflict
     public Transform bodytf; //The transform of our body
     public Transform turrettf; //The transform of out turret
