@@ -8,6 +8,7 @@ public class InputController : MonoBehaviour
     public TankMover tankMover;
     public Shoot shoot;
     public EnemyShoot enemyShoot;
+    public new Camera_Follow camera;
 
     //The controls for our whole tank
     public enum MAINBODYCONTROL
@@ -90,7 +91,7 @@ public class InputController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space)){
                     
                     shoot.ShootOutObject(shoot.bulletPrefab.gameObject);
-                   enemyShoot.ShootOutObject(enemyShoot.ebulletPrefab.gameObject);
+                   //enemyShoot.ShootOutObject(enemyShoot.ebulletPrefab.gameObject);
 
                 }
                 break;

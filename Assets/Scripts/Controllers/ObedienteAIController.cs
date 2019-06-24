@@ -12,7 +12,7 @@ public class ObedienteAIController : AIController
 
     private void Update()
     {
-        handleStateSwitches();
+        AIMain();
     }
 
     public override void Idle()
@@ -23,76 +23,61 @@ public class ObedienteAIController : AIController
     }
     public override void Patrol(Transform target)
     {
-        //Start Patrolling
-        Vector3 targetVector = (target.position - pawn.transform.position).normalized;
-
-        pawn.mover.Move(Vector3.forward);
-
-        target = wayPoints[currentWayPoint];
-
-        if (Vector3.Distance(pawn.transform.position, wayPoints[currentWayPoint].position) <= cutoff)
+        if (CanHear())
         {
-            if (isForward)
-            {
-                currentWayPoint++;
-            }
-            else
-            {
-                currentWayPoint--;
-            }
-
-
-            if (currentWayPoint >= wayPoints.Count || currentWayPoint < 0)
-            {
-                if (looptype == LoopType.Loop)
-                {
-                    currentWayPoint = 0;
-
-                }
-                else if (looptype == LoopType.Random)
-                {
-                    currentWayPoint = Random.Range(0, wayPoints.Count);
-                }
-                else if (looptype == LoopType.PingPong)
-                {
-                    isForward = !isForward;
-                    if (currentWayPoint >= wayPoints.Count)
-                    {
-                        currentWayPoint = wayPoints.Count - 1;
-                    }
-                    else
-                    {
-                        currentWayPoint = 0;
-                    }
-                }
-            }
+            ChangeState(AiStates.Chase);
         }
 
-        RaycastHit hit;
-        //If you detect the player nearby, attack.
-        //It will remain in it's spot until you die or the player dies.
-        //Otherwise, check if there's anything in your way
-        if (Physics.Raycast(pawn.transform.position, transform.forward, out hit, feelerDistance))
+        //Otherwise, avoid any obstacles
+        if (IsBlocked())
         {
-            if (hit.collider.tag == "Player")
-            {
-                ChangeState(AiStates.Attack);
-            }
-            else if (hit.collider.tag == "Obstacle")
-            {
-                ChangeState(AiStates.MoveToAvoid); 
-            }
+            ChangeAvoidState(AIAvoidState.MoveToAvoid);
         }
+
         base.Patrol(target);
     }
+
+    public override void Chase(Transform target)
+    {
+        //Attack the player if you see him
+        if (CanSee())
+        {
+            ChangeAttackState(AiAttackState.Attack);
+        }
+
+        if (!CanSee() && !CanHear())
+        {
+            ChangeState(AiStates.Patrol);
+            ChangeAttackState(AiAttackState.Null);
+        }
+
+        base.Chase(target);
+    }
+
     public override void Attack(Transform target)
     {
         //Flee if you are low on HP
         if (pawn.health < 25f / pawn.maxHealth)
         {
             ChangeState(AiStates.Flee);
+            ChangeAttackState(AiAttackState.Null);
         }
-        base.Attack(target);
+
+        if (!CanSee())
+        {
+            ChangeState(AiStates.Chase);
+            ChangeAttackState(AiAttackState.Null);
+        }
+
+        if (!CanHear())
+        {
+            ChangeState(AiStates.Patrol);
+        }
+
+        base.Chase(target); //We still what our guys chasing us!
+        base.Attack(target); //We use the base and override it.
+
+        //Doing these two things prevents the attack and chase states from switching back and forth to different states!
     }
     public override void Flee(Transform target)
     {
@@ -100,7 +85,13 @@ public class ObedienteAIController : AIController
         bool isBlocked = IsBlocked();
         if (isBlocked)
         {
-            ChangeState(AiStates.MoveToAvoid);
+            ChangeAvoidState(AIAvoidState.MoveToAvoid);
+        }
+
+        //If he doesn't hear me at a certain distance, head back to patrolling!!!
+        if (!CanHear())
+        {
+            ChangeState(AiStates.Patrol);
         }
         base.Flee(target);
     }

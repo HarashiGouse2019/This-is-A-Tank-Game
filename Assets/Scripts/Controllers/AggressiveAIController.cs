@@ -13,7 +13,7 @@ public class AggressiveAIController : AIController
     // Update is called once per frame
     void Update()
     {
-        handleStateSwitches();
+        AIMain();
     }
     public override void Idle()
     {
@@ -23,19 +23,17 @@ public class AggressiveAIController : AIController
     }
     public override void Patrol(Transform target)
     {
-        RaycastHit hit;
-        //If you see the player, chase him down!
-        if (Physics.Raycast(pawn.transform.position, transform.forward, out hit, feelerDistance))
+        //Chase the player if you see him
+        if (CanHear())
         {
-            if (hit.collider.tag == "Player")
-            {
-                ChangeState(AiStates.Chase);
-            }
-            else if (hit.collider.tag == "Obstacle")
-            {
-                ChangeState(AiStates.MoveToAvoid);
-            }
+            ChangeState(AiStates.Chase);
         }
+        //If something's in your way, avoid it
+        if (IsBlocked())
+        {
+            ChangeAvoidState(AIAvoidState.MoveToAvoid);
+        }
+
         base.Patrol(target);
     }
     public override void Chase(Transform target)
@@ -43,14 +41,14 @@ public class AggressiveAIController : AIController
         //If close to the player, attack him
         if (Vector3.Distance(pawn.transform.position, target.position) < 10)
         {
-            ChangeState(AiStates.Attack);
+            ChangeAttackState(AiAttackState.Attack);
         }
         base.Chase(target);
     }
     public override void Attack(Transform target)
     {
         //Continue attacking unless not in range
-        if (Vector3.Distance(pawn.transform.position, target.position) > 10)
+        if (CanSee())
         {
             ChangeState(AiStates.Chase);
         }
@@ -58,7 +56,7 @@ public class AggressiveAIController : AIController
         bool isBlocked = IsBlocked();
         if (isBlocked)
         {
-            ChangeState(AiStates.MoveToAvoid);
+            ChangeAvoidState(AIAvoidState.MoveToAvoid);
         }
         //Do not flee if HP is low
         //Keep pursuing the player

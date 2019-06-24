@@ -27,6 +27,5 @@ public class TurretMover : MonoBehaviour
     {
         //Actual turret movement
         data.turrettf.Rotate(new Vector3(0, direction * data.turretRotateSpeed * Time.deltaTime, 0));
-        camera.Rotate(direction);
     }
 }

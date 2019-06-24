@@ -12,7 +12,9 @@ public class TankData : MonoBehaviour
     public float turretRotateSpeed; //How fast our turret turns
     public float health; //Our health
     public float maxHealth; //Our Max Health
-    public float damage; //The amount of damage we can inflict
+    public float damageVal; //The amount of damage we can inflict
+    public float shieldVal; //The amount/layer of shield you have
+    public float rapidFireVal; //How fast you can shoot; this will use shotsPerSecond and modify it
     public Transform bodytf; //The transform of our body
     public Transform turrettf; //The transform of out turret
     public TankMover mover; //Our tank mover component
@@ -25,4 +27,32 @@ public class TankData : MonoBehaviour
         Computer
     }
     public ControlMode mode; //Create an enum object called mode
+
+    private void Awake()
+    {
+        if (bodytf == null || turrettf == null || turretMover == null || mover == null)
+        {
+            //Do Nothing
+        }
+        health = maxHealth;
+    }
+    private void OnTriggerStay(Collider collision)
+    {
+        switch (mode)
+        {
+            case ControlMode.Computer:       //If the enmey is hit with our bullet, have it take the player's damage
+                if (collision.gameObject.name == "SD_Bullet(Clone)")
+                {
+                    health -= damageVal;
+                }
+                break;
+            case ControlMode.Player:
+                if (collision.gameObject.name == "EnemyBullet(Clone)")
+                {
+                    health -= damageVal;
+                }
+                break;
+        }
+    }
 }
+

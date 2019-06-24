@@ -70,7 +70,12 @@
     <Compile Include="Assets\Scripts\Controllers\ObedienteAIController.cs" />
     <Compile Include="Assets\Scripts\Miscellaneous\GameManager.cs" />
     <Compile Include="Assets\Scripts\Miscellaneous\InputController.cs" />
+    <Compile Include="Assets\Scripts\Miscellaneous\RadarDetection.cs" />
     <Compile Include="Assets\Scripts\Miscellaneous\Timer.cs" />
+    <Compile Include="Assets\Scripts\PowerUps\PowerUp.cs" />
+    <Compile Include="Assets\Scripts\PowerUps\PowerUpController.cs" />
+    <Compile Include="Assets\Scripts\PowerUps\RapidFirePowerUp.cs" />
+    <Compile Include="Assets\Scripts\PowerUps\ShieldPowerUp.cs" />
     <Compile Include="Assets\Scripts\Shoot Bullet\BulletMover.cs" />
     <Compile Include="Assets\Scripts\Shoot Bullet\EnemyShoot.cs" />
     <Compile Include="Assets\Scripts\Shoot Bullet\Shoot.cs" />

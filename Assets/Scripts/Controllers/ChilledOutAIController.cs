@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class ChilledOutAIController : AIController
 {
+
     // Start is called before the first frame update
     void Start()
     {
-        currentWayPoint = 0;
+        currentWayPoint = 0; //Start at waypoint 0
     }
 
     // Update is called once per frame
     void Update()
     {
-        handleStateSwitches();
+        //Handles Switching States
+        AIMain();
     }
 
     public override void Idle()
@@ -24,29 +26,66 @@ public class ChilledOutAIController : AIController
     }
     public override void Patrol(Transform target)
     {
-        RaycastHit hit;
-        //If player shoots at us, transition to Attack
-        //Otherwise, check if there's anything blocking our way.
-        if (Physics.Raycast(pawn.transform.position, transform.forward, out hit, feelerDistance))
+        //Attack The player if you see him
+        if (CanHear())
         {
-            if (hit.collider.tag == "Player")
+            //Flee if my health is low
+            if (pawn.health <= 25f)
             {
-                ChangeState(AiStates.Attack);
+                ChangeState(AiStates.Flee);
             }
-            else if (hit.collider.tag == "Obstacle")
+            //Otherwise, continue chasing
+            else
             {
-                ChangeState(AiStates.MoveToAvoid);
+                ChangeState(AiStates.Chase);
             }
         }
+
+        //However, avoid any obstacles
+        if (IsBlocked())
+        {
+            ChangeAvoidState(AIAvoidState.MoveToAvoid);
+        }
+
         base.Patrol(target);
+    }
+
+    public override void Chase(Transform target)
+    {
+        //If he sees me at his sights, shoot!!!
+        if (CanSee())
+        {
+            ChangeAttackState(AiAttackState.Attack);
+        }
+
+        if (!CanSee() && !CanHear())
+        {
+            ChangeState(AiStates.Patrol);
+            ChangeAttackState(AiAttackState.Null);
+        }
+
+        base.Chase(target);
     }
     public override void Attack(Transform target)
     {
         //Continue shooting the player. If however your HP is low, start to flee.
-        if (pawn.health <= 25f / pawn.maxHealth)
+        if (pawn.health <= 25f)
         {
             ChangeState(AiStates.Flee);
+            ChangeAttackState(AiAttackState.Null);
         }
+
+        if (!CanSee())
+        {
+            ChangeState(AiStates.Chase);
+            ChangeAttackState(AiAttackState.Null);
+        }
+
+        if (!CanHear())
+        {
+            ChangeState(AiStates.Patrol);
+        }
+        base.Chase(target);
         base.Attack(target);
     }
     public override void Flee(Transform target)
@@ -55,7 +94,13 @@ public class ChilledOutAIController : AIController
         bool isBlocked = IsBlocked();
         if (isBlocked)
         {
-            ChangeState(AiStates.MoveToAvoid);
+            ChangeAvoidState(AIAvoidState.MoveToAvoid);
+        }
+
+        //If he doesn't hear me at a certain distance, head back to patrolling!!!
+        if (!CanHear())
+        {
+            ChangeState(AiStates.Patrol);
         }
         base.Flee(target);
     }

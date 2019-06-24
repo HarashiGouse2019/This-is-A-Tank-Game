@@ -27,4 +27,16 @@ public class TankMover : MonoBehaviour
     {
         data.bodytf.Rotate(new Vector3(0, direction * data.rotateSpeed * Time.deltaTime, 0)); //Rotate in a set direction and speed over time on the y axis 
     }
+
+    public void RotateTowards(Vector3 lookVector)
+    {
+        //Find vector to target
+        Vector3 vectorToTarget = new Vector3 (lookVector.x, 0f, lookVector.z);
+
+        //Find quarternion to look down that vector
+        Quaternion targetQuaternion = Quaternion.LookRotation(vectorToTarget, Vector3.up);
+
+        //Set our rotation to "partway towards" that quaternion
+        data.bodytf.rotation = Quaternion.RotateTowards(data.bodytf.rotation, targetQuaternion, data.rotateSpeed * Time.deltaTime);
+    }
 }

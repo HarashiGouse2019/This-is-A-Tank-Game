@@ -35,10 +35,10 @@ public class BulletMover : MonoBehaviour
     }
     public void DestroyDuration(float seconds)
     {
-        timer.StartTimer(); //Start our timer
-        if (timer.currentTime > seconds) //If the timer's time is greater than our destroy duration
+        timer.StartTimer(11); //Start our timer
+        if (timer.currentTime[11] > seconds) //If the timer's time is greater than our destroy duration
         {
-            timer.ResetTime(false); //Reset the time
+            timer.ResetTime(11, false); //Reset the time
             Destroy(gameObject); //Destory this object
         }
     }
@@ -55,7 +55,7 @@ public class BulletMover : MonoBehaviour
                     if (other.gameObject.GetComponent<ChilledOutAIController>() != null)
                     {
                         ChilledOutAIController enemy = other.gameObject.GetComponent<ChilledOutAIController>();
-                        enemy.ChangeState(AIController.AiStates.Attack);
+                        enemy.ChangeAttackState(AIController.AiAttackState.Attack);
                     }
                     Destroy(gameObject);
                 }

@@ -2,42 +2,70 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Timer : MonoBehaviour
 {
-    public float currentTime = 0; //Current time
-    public float resetTime; //The reset time
-    public bool timeStarted = false; //If the time has started
+    /// <summary>
+    /// The time since the timer was activated.
+    /// </summary>
+    public float[] currentTime;
+    [HideInInspector] public float[] resetTime;
+    public bool[] timeStarted; //If the time has started
 
     private void Start()
     {
+        #region Initiate Timers
+        currentTime = new float[12];
+        resetTime = new float[12];
+        timeStarted = new bool[12];
+
         //Current time, when initialized, is set to 0. At the start of the game, assign the value of current time to reset time.
-        resetTime = currentTime; 
-    }
-    
-    private void Update()
-    {
-        if (timeStarted)
+        for(int i = 0; i < resetTime.Length; i++)
         {
-            currentTime += Time.deltaTime; //current is increasing by Time.deltaTime.
+            resetTime[i] = currentTime[i];
         }
+        #endregion
     }
 
-    public void StartTimer()
+    protected void Update()
+    {
+        RunTimers();
+    }
+
+    private void RunTimers()
+    {
+        #region Run Timers
+        ////Current time, when initialized, is set to 0. At the start of the game, assign the value of current time to reset time.
+        for(int i = 0; i < timeStarted.Length; i++)
+        {
+            if (timeStarted[i]) currentTime[i] += Time.deltaTime;
+        }
+        #endregion
+    }
+
+    ///<summary>
+    ///Activate a timer by index
+    ///</summary>
+    public void StartTimer(int index)
     {
         //Starts the timer
-        timeStarted = true;
+        timeStarted[index] = true;
     }
-    public void ResetTime(bool continueTimer)
+
+    ///<summary>
+    ///Reset a timer by index
+    ///</summary>
+    public void ResetTime(int index, bool continueTimer)
     {
         //Stops the timers, and returns the resetTime value back to the currentTime.
-        switch(continueTimer)
+        switch (continueTimer)
         {
             case false:
-                timeStarted = false;
+                timeStarted[index] = false;
                 break;
             default:
                 break;
         }
-        currentTime = resetTime;
+        currentTime[index] = resetTime[index];
     }
 }
