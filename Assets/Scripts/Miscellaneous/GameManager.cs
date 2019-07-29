@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
     {
         switch (gameplayStart)
         {
-            case true:/*
+            case true:
                 switch (playermode)
                 {
                     case PlayerMode.SinglePlayer:

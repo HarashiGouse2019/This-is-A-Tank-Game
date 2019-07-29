@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7593664109281265876}
   - component: {fileID: 7593664109281265872}
   - component: {fileID: 7593664109281265873}
-  - component: {fileID: 5426806412545716073}
   m_Layer: 0
   m_Name: RapidFireSphere
   m_TagString: Untagged
@@ -122,17 +121,3 @@ MonoBehaviour:
   currentTime: []
   resetTime: []
   timeStarted: 
---- !u!114 &5426806412545716073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7593664109281265879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f84d79450b42c1b48b8a1a30024f6c8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  duration: 10
-  amplifier: 1

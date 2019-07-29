@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class RapidFirePowerUp : PowerUp
 {
+    public static RapidFirePowerUp instance;
 
     public float amplifier;
 

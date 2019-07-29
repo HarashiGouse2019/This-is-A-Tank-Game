@@ -47,6 +47,7 @@ public class ProceduralGen : MonoBehaviour
 
     void Generate()
     {
+        //Seed the random generator
         Random.seed = GenerateSeed();
 
         //Create 2d array

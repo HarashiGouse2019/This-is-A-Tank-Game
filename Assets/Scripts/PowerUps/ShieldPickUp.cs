@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RapidFirePickUp : MonoBehaviour
+public class ShieldPickUp : MonoBehaviour
 {
-    public RapidFirePowerUp powerup;
+    public ShieldPowerUp powerup;
 
     void OnTriggerEnter(Collider col)
     {
         PowerUpController tempPUC = col.GetComponent<PowerUpController>();
         if (tempPUC != null)
         {
-            Debug.Log("Rapid Fire Power Up");
+            Debug.Log("Shield Power Up");
             tempPUC.Append(powerup);
             Destroy(gameObject);
         }

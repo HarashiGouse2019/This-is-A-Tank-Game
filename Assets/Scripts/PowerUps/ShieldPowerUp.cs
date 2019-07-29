@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShieldPowerUp : MonoBehaviour
+public class ShieldPowerUp : PowerUp
 {
-    // Start is called before the first frame update
-    void Start()
+    public static ShieldPowerUp instance;
+
+    public float amplifier;
+
+    public override void OnApply(GameObject obj)
     {
-        
+        Debug.Log("OnApply Called!");
+        TankData temp = obj.GetComponent<TankData>();
+        temp.shieldVal += amplifier;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnRemove(GameObject obj)
     {
-        
+        TankData temp = obj.GetComponent<TankData>();
+        temp.shieldVal -= amplifier;
     }
 }

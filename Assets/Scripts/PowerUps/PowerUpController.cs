@@ -10,16 +10,16 @@ public class PowerUpController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandlePowerUpTimers();   
+       HandlePowerUpTimers();
     }
 
     public void HandlePowerUpTimers()
     {
         List<PowerUp> toBeRemoved = new List<PowerUp>();
-        //Temp
-        if (powerups != null)
+
+        for (int i = 0; i < powerups.Count; i++)
         {
-            for (int i = 0; i < powerups.Count; i++)
+            if (!timer.timeStarted[i])
             {
                 timer.StartTimer(i);
                 if (timer.currentTime[i] <= powerups[i].duration)
@@ -28,17 +28,17 @@ public class PowerUpController : MonoBehaviour
                     timer.ResetTime(i, false);
                 }
             }
+        }
 
-            //Once done iterated the power ups that need to be removed, remove them.
+        //Once done iterated the power ups that need to be removed, remove them.
+        if (toBeRemoved.Count < 0)
+        {
             for (int i = 0; i < toBeRemoved.Count; i++)
             {
                 Remove(toBeRemoved[i]);
             }
-        } else
-        {
-            Debug.Log("Kondaya, chi. Mo, chui dan ha iga pawaapu sseyou!");
         }
-    }
+    } 
 
     /// <summary>
     /// Appends a Power Up to an object.
