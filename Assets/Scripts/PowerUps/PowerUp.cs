@@ -2,16 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public abstract class PowerUp
+public abstract class PowerUp : MonoBehaviour
 {
-    public TankData pawn;
-    public float duration;
 
-    /// <summary>
-    /// As a Power Up is taking effect.
-    /// </summary>
-    public abstract void OnActive();
+    public float duration;
 
     /// <summary>
     /// What to do when the Power Up is applied to a specific object.

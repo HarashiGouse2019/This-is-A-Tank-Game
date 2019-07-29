@@ -28,6 +28,7 @@ public class TankMover : MonoBehaviour
         data.bodytf.Rotate(new Vector3(0, direction * data.rotateSpeed * Time.deltaTime, 0)); //Rotate in a set direction and speed over time on the y axis 
     }
 
+    //This is for de Ei Ai!
     public void RotateTowards(Vector3 lookVector)
     {
         //Find vector to target
@@ -40,3 +41,4 @@ public class TankMover : MonoBehaviour
         data.bodytf.rotation = Quaternion.RotateTowards(data.bodytf.rotation, targetQuaternion, data.rotateSpeed * Time.deltaTime);
     }
 }
+

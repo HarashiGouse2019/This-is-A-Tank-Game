@@ -41,7 +41,7 @@ public class InputController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //Start with the assumption that I'm not moving
         Vector3 directionToMove = Vector3.zero;

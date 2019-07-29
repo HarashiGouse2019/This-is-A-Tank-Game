@@ -13,6 +13,7 @@ public class RadarDetection : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            
             playerDetected = true;
         }
     }

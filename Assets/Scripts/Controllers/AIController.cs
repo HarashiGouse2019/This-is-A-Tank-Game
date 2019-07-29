@@ -6,11 +6,12 @@ public class AIController : MonoBehaviour
 {
   
     public TankData pawn;
-    public TankData target;
+
+    public TurretMover target;
 
     public Shoot enemyShoot;
 
-    public List<Transform> wayPoints;
+    public Transform[] wayPoints;
 
     public Timer timer;
 
@@ -35,7 +36,7 @@ public class AIController : MonoBehaviour
     public enum LoopType { Loop, Stop, PingPong, Random };
     public enum AiStates { Idle, Patrol, Chase, Flee, Dead };
     public enum AIAvoidState { Null, TurnToAvoid, MoveToAvoid };
-    public enum AiAttackState { Null, Attack}
+    public enum AiAttackState { Null, Attack };
 
     public LoopType looptype;
     public AiStates currentState;
@@ -47,6 +48,8 @@ public class AIController : MonoBehaviour
     {
         hearingRadar = GetComponentInChildren<SphereCollider>();
         currentState = AiStates.Idle;
+        target = FindObjectOfType<TurretMover>();
+        wayPoints = FindObjectsOfType<Transform>();
     }
 
     private void Update()
@@ -59,6 +62,7 @@ public class AIController : MonoBehaviour
         {
             ChangeState(AiStates.Dead);
         }
+        wayPoints = new Transform[10];
     }
 
     protected void AIMain()
@@ -78,7 +82,6 @@ public class AIController : MonoBehaviour
             case AiStates.Flee:
                 Flee(target.transform);
                 break;
-            
             case AiStates.Dead:
                 Dead();
                 break;
@@ -200,7 +203,7 @@ public class AIController : MonoBehaviour
             }
 
 
-            if (currentWayPoint >= wayPoints.Count || currentWayPoint < 0)
+            if (currentWayPoint >= wayPoints.Length || currentWayPoint < 0)
             {
                 if (looptype == LoopType.Loop)
                 {
@@ -209,14 +212,14 @@ public class AIController : MonoBehaviour
                 }
                 else if (looptype == LoopType.Random)
                 {
-                    currentWayPoint = Random.Range(0, wayPoints.Count);
+                    currentWayPoint = Random.Range(0, wayPoints.Length);
                 }
                 else if (looptype == LoopType.PingPong)
                 {
                     isForward = !isForward;
-                    if (currentWayPoint >= wayPoints.Count)
+                    if (currentWayPoint >= wayPoints.Length)
                     {
-                        currentWayPoint = wayPoints.Count - 1;
+                        currentWayPoint = wayPoints.Length - 1;
                     }
                     else
                     {
@@ -276,7 +279,7 @@ public class AIController : MonoBehaviour
     }
     public virtual void Attack(Transform target)
     {
-        this.enemyShoot.InitiateEnemyControls(pawn.shotsPerSecond); //Start basic enemy routine
+        enemyShoot.InitiateEnemyControls(pawn.shotsPerSecond); //Start basic enemy routine
     }
     public virtual void Dead()
     {
@@ -306,7 +309,7 @@ public class AIController : MonoBehaviour
             case true:
                 if (GetComponentInChildren<RadarDetection>().playerDetected)
                 {
-                    Debug.Log("I hear you!!!");
+                    Debug.Log("I hear'ya boj!");
                     return true;
                 } 
                 break;

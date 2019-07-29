@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class PowerUpController : MonoBehaviour
 {
-    public List<PowerUp> powerups; //Temp
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public List<PowerUp> powerups;
+    public Timer timer;
 
     // Update is called once per frame
     void Update()
@@ -21,22 +16,27 @@ public class PowerUpController : MonoBehaviour
     public void HandlePowerUpTimers()
     {
         List<PowerUp> toBeRemoved = new List<PowerUp>();
-        Timer timer = new Timer();
         //Temp
-        for (int i = 0; i < powerups.Count; i++)
+        if (powerups != null)
         {
-            timer.StartTimer(0);
-            if (timer.currentTime[0] <= powerups[i].duration)
+            for (int i = 0; i < powerups.Count; i++)
             {
-                toBeRemoved.Add(powerups[i]);
-                timer.ResetTime(0, false);
+                timer.StartTimer(i);
+                if (timer.currentTime[i] <= powerups[i].duration)
+                {
+                    toBeRemoved.Add(powerups[i]);
+                    timer.ResetTime(i, false);
+                }
             }
-        }
 
-        //Once done iterated the power ups that need to be removed, remove them.
-        for (int i = 0; i < toBeRemoved.Count; i++)
+            //Once done iterated the power ups that need to be removed, remove them.
+            for (int i = 0; i < toBeRemoved.Count; i++)
+            {
+                Remove(toBeRemoved[i]);
+            }
+        } else
         {
-            Remove(toBeRemoved[i]);
+            Debug.Log("Kondaya, chi. Mo, chui dan ha iga pawaapu sseyou!");
         }
     }
 
