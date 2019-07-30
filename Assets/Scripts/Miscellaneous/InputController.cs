@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
+    public static InputController controller;
+
     public TankData pawn; 
     public TankMover tankMover;
     public Shoot shoot;
     public EnemyShoot enemyShoot;
     public new Camera_Follow camera;
+
+    //Can you rapid fire?
+    public bool canRapidFire = false;
 
     //The controls for our whole tank
     public enum MAINBODYCONTROL
@@ -36,6 +41,7 @@ public class InputController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        controller = this;
         pawnTf = pawn.GetComponent<Transform>(); //Get the transform component
         tankMover = pawn.GetComponent<TankMover>(); //Get the TankMover component
     }
@@ -47,7 +53,7 @@ public class InputController : MonoBehaviour
         Vector3 directionToMove = Vector3.zero;
         Vector3 bulletVelocity = Vector3.zero;
 
-        
+
         switch (mainControl)
         {
             #region WASD_CONTROLS
@@ -88,17 +94,15 @@ public class InputController : MonoBehaviour
                 }
 
                 //If space is down -- shoot!
-                if (Input.GetKeyDown(KeyCode.Space)){
-                    
+                if (Input.GetKey(KeyCode.Space))
+                {
                     shoot.ShootOutObject(shoot.bulletPrefab.gameObject);
-                   //enemyShoot.ShootOutObject(enemyShoot.ebulletPrefab.gameObject);
-
                 }
                 break;
                 #endregion
-            #region ARROW_CONTROLS
+                #region ARROW_CONTROLS
                 #endregion
-            #region OTHER
+                #region OTHER
                 #endregion
         }
 

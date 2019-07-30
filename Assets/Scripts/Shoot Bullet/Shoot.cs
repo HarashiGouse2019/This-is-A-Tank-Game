@@ -1,24 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using msg = UnityEngine.Debug;
 
 public class Shoot : MonoBehaviour
 {
 
     public Transform pointOfFire; //The transform of our point of fire
     public BulletMover bulletPrefab; //Reference the BulletMover component
+    public TankData data;
+    public bool canShoot = true;
+ 
     public Timer timer;
+    public int waitVal;
 
     private void Update()
     {
-  
         bulletPrefab.gameObject.transform.position = pointOfFire.position; //Update the position, and apply it to our bullet
         bulletPrefab.gameObject.transform.rotation = pointOfFire.rotation;  //Update the rotation, and apply it to our bullet
+        if (!canShoot) waitVal = Wait(data.shotsPerSecond);
     }
                                              
     public void ShootOutObject(GameObject prefab)
     {
-        Instantiate(prefab); //Create our bullet prefab
+        if (canShoot)
+        {
+            Instantiate(prefab); //Create our bullet prefap
+            canShoot = false;
+        }
     }
 
     public void InitiateEnemyControls(float secondsUntilShoot)
@@ -29,5 +38,24 @@ public class Shoot : MonoBehaviour
             ShootOutObject(bulletPrefab.gameObject); //Shoot a bullet
             timer.ResetTime(2, false); //Reset the timer
         }
+    }
+
+    //Return a 1 if timer is up
+    public int Wait(float seconds)
+    {
+        timer.StartTimer(3);
+        UpdateCanShoot();
+        if (timer.currentTime[3] > seconds)
+        {
+            msg.Log("Returned a value of 1");
+            timer.ResetTime(3, false);
+            return 1;
+        }
+        return 0;
+    }
+
+    public void UpdateCanShoot()
+    {
+        if (waitVal == 1) canShoot = true;
     }
 }

@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 10
-  amplifier: 1
+  val: 9
+  colSource: {fileID: 0}

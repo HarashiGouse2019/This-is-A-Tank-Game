@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7068666256966246685}
   - component: {fileID: 7068666256966246680}
   - component: {fileID: 2653919945651351920}
+  - component: {fileID: 6462937266467256745}
   m_Layer: 0
   m_Name: ShieldSphere
   m_TagString: Untagged
@@ -121,3 +122,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerup: {fileID: 8370938132691029424, guid: eff2e3f0f736aa040bca105474a093c8, type: 3}
+--- !u!95 &6462937266467256745
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7068666256966246686}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8ae06cc21347ed64884e36c4f7690a87, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

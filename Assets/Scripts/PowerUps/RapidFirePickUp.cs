@@ -12,7 +12,7 @@ public class RapidFirePickUp : MonoBehaviour
         if (tempPUC != null)
         {
             Debug.Log("Rapid Fire Power Up");
-            tempPUC.Append(powerup);
+            tempPUC.Append(powerup, powerup.colSource = col.gameObject);
             Destroy(gameObject);
         }
     }

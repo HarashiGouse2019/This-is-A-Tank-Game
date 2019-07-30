@@ -12,7 +12,7 @@ public class ShieldPickUp : MonoBehaviour
         if (tempPUC != null)
         {
             Debug.Log("Shield Power Up");
-            tempPUC.Append(powerup);
+            tempPUC.Append(powerup, powerup.colSource = col.gameObject);
             Destroy(gameObject);
         }
     }

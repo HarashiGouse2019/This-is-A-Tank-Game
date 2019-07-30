@@ -10,12 +10,12 @@ public abstract class PowerUp : MonoBehaviour
     /// <summary>
     /// What to do when the Power Up is applied to a specific object.
     /// </summary>
-    public abstract void OnApply(GameObject obj);
+    public abstract void OnApply(GameObject obj, GameObject source);
 
     /// <summary>
     /// What to do when the Power Up is removed from a specific object.
     /// </summary>
-    public abstract void OnRemove(GameObject obj);
+    public abstract void OnRemove(GameObject obj, GameObject source);
 
 
 }

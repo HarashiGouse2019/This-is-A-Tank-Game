@@ -760,14 +760,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1000
   reverseMoveSpeed: 500
-  shotsPerSecond: 0.25
+  shotsPerSecond: 1
   rotateSpeed: 55
   turretRotateSpeed: 65
   health: 0
   maxHealth: 100
   damageVal: 5
-  shieldVal: 0
-  rapidFireVal: 0
+  shieldVal: 1
+  rapidFireVal: 1
   bodytf: {fileID: 5307045552777753013}
   turrettf: {fileID: 7284665189517872613}
   mover: {fileID: 5307045552777981334}
@@ -1962,6 +1962,7 @@ MonoBehaviour:
   shoot: {fileID: 7284665189517872615}
   enemyShoot: {fileID: 0}
   camera: {fileID: 0}
+  canRapidFire: 0
   mainControl: 0
   turretControl: 0
 --- !u!1 &7284665189517872612
@@ -2033,7 +2034,10 @@ MonoBehaviour:
   pointOfFire: {fileID: 7284665189664544506}
   bulletPrefab: {fileID: 7222445259909941757, guid: 7028ded00d4341542b5159c14b0250f0,
     type: 3}
-  timer: {fileID: 0}
+  data: {fileID: 5307045552777981330}
+  canShoot: 1
+  timer: {fileID: 7284665189517872608}
+  waitVal: 0
 --- !u!114 &7284665189517872608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2046,18 +2050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03692d274b079fe4181dda7b1a4965b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTime:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  currentTime: []
   resetTime:
   - 0
   - 0
@@ -2070,7 +2063,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  timeStarted: 0000000000000000000000
+  timeStarted: 
 --- !u!1 &7284665189664544505
 GameObject:
   m_ObjectHideFlags: 0

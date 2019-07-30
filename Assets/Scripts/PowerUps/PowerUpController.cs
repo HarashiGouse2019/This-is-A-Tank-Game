@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using msg = UnityEngine.Debug;
 
 public class PowerUpController : MonoBehaviour
 {
@@ -16,22 +17,20 @@ public class PowerUpController : MonoBehaviour
     public void HandlePowerUpTimers()
     {
         List<PowerUp> toBeRemoved = new List<PowerUp>();
-
+        msg.Log(toBeRemoved.Count);
         for (int i = 0; i < powerups.Count; i++)
         {
-            if (!timer.timeStarted[i])
+            timer.StartTimer(i);
+            if (timer.currentTime[i] > powerups[i].duration)
             {
-                timer.StartTimer(i);
-                if (timer.currentTime[i] <= powerups[i].duration)
-                {
-                    toBeRemoved.Add(powerups[i]);
-                    timer.ResetTime(i, false);
-                }
+                toBeRemoved.Add(powerups[i]);
+                timer.ResetTime(i, false);
             }
+
         }
 
         //Once done iterated the power ups that need to be removed, remove them.
-        if (toBeRemoved.Count < 0)
+        if (toBeRemoved.Count > 0)
         {
             for (int i = 0; i < toBeRemoved.Count; i++)
             {
@@ -44,25 +43,25 @@ public class PowerUpController : MonoBehaviour
     /// Appends a Power Up to an object.
     /// </summary>
     /// <param name="powerUp"></param>
-    public void Append(PowerUp powerUp)
+    public void Append(PowerUp powerUp, GameObject source = null)
     {
         //Add powerUp to the list,
         powerups.Add(powerUp);
 
         //Call the OnApply event
-        powerUp.OnApply(gameObject);
+        powerUp.OnApply(gameObject, source);
     }
 
     /// <summary>
     /// Removes an appended Power Up from an object.
     /// </summary>
     /// <param name="powerUp"></param>
-    public void Remove(PowerUp powerUp)
+    public void Remove(PowerUp powerUp, GameObject source = null)
     {
         //Remove powerup from the list,
         powerups.Remove(powerUp);
 
         //Call the OnRemove event
-        powerUp.OnRemove(gameObject);
+        powerUp.OnRemove(gameObject, source);
     }
 }

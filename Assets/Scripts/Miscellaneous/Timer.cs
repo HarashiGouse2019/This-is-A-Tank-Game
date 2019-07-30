@@ -10,26 +10,15 @@ public class Timer : MonoBehaviour
     /// </summary>
     public float[] currentTime;
     [HideInInspector] public float[] resetTime;
+
+    /// <summary>
+    /// If the current time has started
+    /// </summary>
     public bool[] timeStarted; //If the time has started
 
     private void Start()
     {
-        #region Initiate Timers
-        currentTime = new float[12];
-        resetTime = new float[12];
-        timeStarted = new bool[12];
-
-        //Current time, when initialized, is set to 0. At the start of the game, assign the value of current time to reset time.
-        for(int i = 0; i < resetTime.Length; i++)
-        {
-            resetTime[i] = currentTime[i];
-        }
-        #endregion
-    }
-
-    protected void Update()
-    {
-        RunTimers();
+        Initialize();
     }
 
     private void RunTimers()
@@ -50,6 +39,7 @@ public class Timer : MonoBehaviour
     {
         //Starts the timer
         timeStarted[index] = true;
+        RunTimers();
     }
 
     ///<summary>
@@ -63,9 +53,24 @@ public class Timer : MonoBehaviour
             case false:
                 timeStarted[index] = false;
                 break;
-            default:
-                break;
         }
         currentTime[index] = resetTime[index];
+    }
+    /// <summary>
+    /// Initialize all Pre-Defined Timers
+    /// </summary>
+    private void Initialize()
+    {
+        #region Initiate Timers
+        currentTime = new float[12];
+        resetTime = new float[12];
+        timeStarted = new bool[12];
+
+        //Current time, when initialized, is set to 0. At the start of the game, assign the value of current time to reset time.
+        for (int i = 0; i < resetTime.Length; i++)
+        {
+            resetTime[i] = currentTime[i];
+        }
+        #endregion
     }
 }

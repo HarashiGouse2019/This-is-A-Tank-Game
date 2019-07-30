@@ -8,16 +8,22 @@ public class ShieldPowerUp : PowerUp
 
     public float amplifier;
 
-    public override void OnApply(GameObject obj)
+    public GameObject colSource;
+
+    public override void OnApply(GameObject obj, GameObject source = null)
     {
+        if (colSource != null) source = colSource;
+
         Debug.Log("OnApply Called!");
-        TankData temp = obj.GetComponent<TankData>();
+        TankData temp = source.GetComponent<TankData>();
         temp.shieldVal += amplifier;
     }
 
-    public override void OnRemove(GameObject obj)
+    public override void OnRemove(GameObject obj, GameObject source = null)
     {
-        TankData temp = obj.GetComponent<TankData>();
+        if (colSource != null) source = colSource;
+
+        TankData temp = source.GetComponent<TankData>();
         temp.shieldVal -= amplifier;
     }
 }
