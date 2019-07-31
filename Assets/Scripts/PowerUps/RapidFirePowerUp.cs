@@ -19,7 +19,8 @@ public class RapidFirePowerUp : PowerUp
         TankData temp = source.GetComponent<TankData>();
         resetVal = temp.rapidFireVal;
         temp.rapidFireVal = val;
-        if (temp.shotsPerSecond != (temp.shotsPerSecond = temp.shotsPerSecond - (temp.rapidFireVal / 10 ))) temp.shotsPerSecond = temp.shotsPerSecond - (temp.rapidFireVal / 10);
+        msg.Log(1 - (9 / 10));
+        if (temp.shotsPerSecond > (temp.shotsPerSecond = temp.shotsPerSecond - (temp.rapidFireVal / 10 ))) temp.shotsPerSecond = temp.shotsPerSecond - (temp.rapidFireVal / 10);
         InputController.controller.canRapidFire = true;
     }
 
