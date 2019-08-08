@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
         waypoints.Add(wp[0].transform);
     }
 
-    public bool IsPlaying()
+    public bool IsPlaying(PlayerMode mode = PlayerMode.SinglePlayer)
     {
         switch (gameplayStart)
         {
@@ -123,12 +123,12 @@ public class GameManager : MonoBehaviour
                     case PlayerMode.SinglePlayer:
                         //Change player 1 camera to normal size
                         playerCam[0].rect = new Rect(0, 0, 1, 1);
-
+                        parentUi.gameObject.SetActive(true);
                         break;
                     case PlayerMode.Multiplayer:
                         //Split player 1 camera to fit player 2 camera
                         playerCam[0].rect = new Rect(0, 0, 0.49f, 1);
-
+                        parentUi.gameObject.SetActive(true);
                         break;
                     default:
                         //Default stuff

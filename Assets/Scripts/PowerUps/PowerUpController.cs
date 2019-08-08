@@ -17,7 +17,6 @@ public class PowerUpController : MonoBehaviour
     public void HandlePowerUpTimers()
     {
         List<PowerUp> toBeRemoved = new List<PowerUp>();
-        msg.Log(toBeRemoved.Count);
         for (int i = 0; i < powerups.Count; i++)
         {
             timer.StartTimer(i);

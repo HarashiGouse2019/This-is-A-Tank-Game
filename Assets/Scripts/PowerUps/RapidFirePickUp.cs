@@ -11,7 +11,6 @@ public class RapidFirePickUp : MonoBehaviour
         PowerUpController tempPUC = col.GetComponent<PowerUpController>();
         if (tempPUC != null)
         {
-            Debug.Log("Rapid Fire Power Up");
             tempPUC.Append(powerup, powerup.colSource = col.gameObject);
             Destroy(gameObject);
         }

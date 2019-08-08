@@ -41,6 +41,7 @@ public class InputController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.manager.Play("TankEngineSound");
         controller = this;
         pawnTf = pawn.GetComponent<Transform>(); //Get the transform component
         tankMover = pawn.GetComponent<TankMover>(); //Get the TankMover component

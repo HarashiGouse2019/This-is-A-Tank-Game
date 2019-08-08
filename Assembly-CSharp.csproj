@@ -68,6 +68,8 @@
     <Compile Include="Assets\Scripts\Controllers\ChilledOutAIController.cs" />
     <Compile Include="Assets\Scripts\Controllers\CunningAIController.cs" />
     <Compile Include="Assets\Scripts\Controllers\ObedienteAIController.cs" />
+    <Compile Include="Assets\Scripts\Miscellaneous\Audio.cs" />
+    <Compile Include="Assets\Scripts\Miscellaneous\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Miscellaneous\DrawWorldSpaceHealth.cs" />
     <Compile Include="Assets\Scripts\Miscellaneous\FloatMotion.cs" />
     <Compile Include="Assets\Scripts\Miscellaneous\GameManager.cs" />
@@ -76,8 +78,10 @@
     <Compile Include="Assets\Scripts\Miscellaneous\Navigator.cs" />
     <Compile Include="Assets\Scripts\Miscellaneous\ProceduralGen.cs" />
     <Compile Include="Assets\Scripts\Miscellaneous\RadarDetection.cs" />
+    <Compile Include="Assets\Scripts\Miscellaneous\ReadPrefs.cs" />
     <Compile Include="Assets\Scripts\Miscellaneous\SaveTest.cs" />
     <Compile Include="Assets\Scripts\Miscellaneous\Timer.cs" />
+    <Compile Include="Assets\Scripts\Miscellaneous\VolSoundTest.cs" />
     <Compile Include="Assets\Scripts\PowerUps\PowerUp.cs" />
     <Compile Include="Assets\Scripts\PowerUps\PowerUpController.cs" />
     <Compile Include="Assets\Scripts\PowerUps\RapidFirePickUp.cs" />
@@ -85,6 +89,9 @@
     <Compile Include="Assets\Scripts\PowerUps\ShieldPickUp.cs" />
     <Compile Include="Assets\Scripts\PowerUps\ShieldPowerUp.cs" />
     <Compile Include="Assets\Scripts\PowerUps\SpawnPowerUps.cs" />
+    <Compile Include="Assets\Scripts\PowerUps\SpeedPickUp.cs" />
+    <Compile Include="Assets\Scripts\PowerUps\SpeedPowerUp.cs" />
+    <Compile Include="Assets\Scripts\ScanWayPoints.cs" />
     <Compile Include="Assets\Scripts\Shoot Bullet\BulletMover.cs" />
     <Compile Include="Assets\Scripts\Shoot Bullet\EnemyShoot.cs" />
     <Compile Include="Assets\Scripts\Shoot Bullet\Shoot.cs" />

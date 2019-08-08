@@ -10,10 +10,12 @@ public class ShieldPowerUp : PowerUp
 
     public GameObject colSource;
 
+    public GameObject prefab;
+
     public override void OnApply(GameObject obj, GameObject source = null)
     {
         if (colSource != null) source = colSource;
-
+        Instantiate(prefab, colSource.transform);
         Debug.Log("OnApply Called!");
         TankData temp = source.GetComponent<TankData>();
         temp.shieldVal += amplifier;

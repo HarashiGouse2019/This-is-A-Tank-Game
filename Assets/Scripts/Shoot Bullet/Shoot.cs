@@ -12,7 +12,7 @@ public class Shoot : MonoBehaviour
     public bool canShoot = true;
  
     public Timer timer;
-    public int waitVal;
+    public int waitVal = 1;
 
     private void Update()
     {
@@ -26,6 +26,7 @@ public class Shoot : MonoBehaviour
         if (canShoot)
         {
             Instantiate(prefab); //Create our bullet prefap
+            AudioManager.manager.Play("FireSound");
             canShoot = false;
         }
     }
@@ -46,8 +47,7 @@ public class Shoot : MonoBehaviour
         timer.StartTimer(3);
         UpdateCanShoot();
         if (timer.currentTime[3] > seconds)
-        {
-            msg.Log("Returned a value of 1");
+        { 
             timer.ResetTime(3, false);
             return 1;
         }

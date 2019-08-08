@@ -7,11 +7,11 @@ public class AIController : MonoBehaviour
   
     public TankData pawn;
 
-    public TurretMover target;
+    public GameObject target;
 
     public Shoot enemyShoot;
 
-    public Transform[] wayPoints;
+    public List<Transform> wayPoints;
 
     public Timer timer;
 
@@ -48,8 +48,8 @@ public class AIController : MonoBehaviour
     {
         hearingRadar = GetComponentInChildren<SphereCollider>();
         currentState = AiStates.Idle;
-        target = FindObjectOfType<TurretMover>();
-        wayPoints = FindObjectsOfType<Transform>();
+        target = GameManager.instance.players[0].gameObject;
+        GetWayPoints();
     }
 
     private void Update()
@@ -62,7 +62,6 @@ public class AIController : MonoBehaviour
         {
             ChangeState(AiStates.Dead);
         }
-        wayPoints = new Transform[10];
     }
 
     protected void AIMain()
@@ -203,7 +202,7 @@ public class AIController : MonoBehaviour
             }
 
 
-            if (currentWayPoint >= wayPoints.Length || currentWayPoint < 0)
+            if (currentWayPoint >= wayPoints.Count || currentWayPoint < 0)
             {
                 if (looptype == LoopType.Loop)
                 {
@@ -212,14 +211,14 @@ public class AIController : MonoBehaviour
                 }
                 else if (looptype == LoopType.Random)
                 {
-                    currentWayPoint = Random.Range(0, wayPoints.Length);
+                    currentWayPoint = Random.Range(0, wayPoints.Count);
                 }
                 else if (looptype == LoopType.PingPong)
                 {
                     isForward = !isForward;
-                    if (currentWayPoint >= wayPoints.Length)
+                    if (currentWayPoint >= wayPoints.Count)
                     {
-                        currentWayPoint = wayPoints.Length - 1;
+                        currentWayPoint = wayPoints.Count - 1;
                     }
                     else
                     {
@@ -316,5 +315,16 @@ public class AIController : MonoBehaviour
         }
         //Can hear is going to take advantage of using a circle collider that is set as a trigger
         return false;
+    }
+    public virtual void GetWayPoints()
+    {
+        if (wayPoints.Count == 0)
+        {
+            wayPoints = new List<Transform>();
+            for (int i = 0; i < GameManager.instance.progen.scan.wayPoints.Count; i++)
+            {
+                wayPoints.Add(GameManager.instance.progen.scan.wayPoints[i].transform);
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@ public class ObedienteAIController : AIController
 
     private void Start()
     {
+        GetWayPoints();
         currentWayPoint = 0;
     }
 

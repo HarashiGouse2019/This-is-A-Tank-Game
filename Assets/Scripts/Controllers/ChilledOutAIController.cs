@@ -8,6 +8,7 @@ public class ChilledOutAIController : AIController
     // Start is called before the first frame update
     void Start()
     {
+        GetWayPoints();
         currentWayPoint = 0; //Start at waypoint 0
     }
 

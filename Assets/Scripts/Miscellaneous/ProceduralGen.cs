@@ -6,9 +6,6 @@ using Random = UnityEngine.Random;
 
 public class ProceduralGen : MonoBehaviour
 {
-    /*Definded Seed: 2 Digits
-     * Map Of The Day: 3 Digits
-     */
     public static ProceduralGen proceduralGen;
 
     private  Random.State seedGenerator;
@@ -20,6 +17,8 @@ public class ProceduralGen : MonoBehaviour
     public List<GameObject> roomPrefabs;
     public List<GameObject> enemyPrefabs;
     public GameObject[,] gridSize;
+
+    public ScanWayPoints scan;
 
     public int numCols;
     public int numRows;
@@ -38,8 +37,6 @@ public class ProceduralGen : MonoBehaviour
     void Start()
     {
         proceduralGen = this;
-       
-        //CheckNewDay();
         Generate();
     }
 
@@ -70,19 +67,25 @@ public class ProceduralGen : MonoBehaviour
 
                     //Move into position
                     tempRoom.transform.position = new Vector3(currentCol * tileWidth, 0, -currentRow * tileHeight);
-                    tempEnemy.transform.position = new Vector3(currentCol * tileWidth, 0, -currentRow * tileHeight);
+                    tempEnemy.transform.position = new Vector3(currentCol * tileWidth, 1, -currentRow * tileHeight);
 
                     //Room Name
                     tempRoom.name = "Room (" + currentCol + ", " + currentRow + ")";
 
                     //Make it a child of this object
                     tempRoom.GetComponent<Transform>().parent = this.gameObject.GetComponent<Transform>();
+
+                    
                 }
             }
 
             //After field is generated, add in player
             GameManager.instance.SpawnOnSpot(GameManager.instance.players[0], new Vector3(-0.082f, -12.60907f, 0.356f));
             Camera_Follow.camerafollow.ScanForPlayer();
+
+            //Scan for waypoints
+            scan.Scan();
+
         } else
         {
             Debug.LogError("Field wasn't generated.");

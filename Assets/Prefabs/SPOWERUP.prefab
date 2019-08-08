@@ -45,3 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 30
   amplifier: 2
+  colSource: {fileID: 0}
+  prefab: {fileID: 3090133498674793420, guid: efd0987f279011840a856ce31c83cbdf, type: 3}

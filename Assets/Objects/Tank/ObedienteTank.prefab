@@ -285,13 +285,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2582066550773188995}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cc88bcf475fb244987bad02136cf170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 2582066550773157664}
-  target: {fileID: 0}
+  target: {fileID: 7284665188158056593, guid: 3d5b0ea4ad4f1e54594af64c8dbfb600, type: 3}
   enemyShoot: {fileID: 2582066550773189021}
   wayPoints: []
   timer: {fileID: 8280835574772049667}
@@ -303,7 +303,7 @@ MonoBehaviour:
   startAttackTime: 2
   feelerDistance: 12
   hearingRadar: {fileID: 8404543889594951609}
-  hearingDistance: 6
+  hearingDistance: 4
   isDead: 0
   looptype: 2
   currentState: 0
@@ -325,7 +325,10 @@ MonoBehaviour:
   pointOfFire: {fileID: 7924030706356381409}
   bulletPrefab: {fileID: 1239709424971828087, guid: 1f45c8ac262327f48a647bd6f34e1d89,
     type: 3}
+  data: {fileID: 2582066550773157664}
+  canShoot: 1
   timer: {fileID: 8280835574772049667}
+  waitVal: 1
 --- !u!1 &2582066550773188997
 GameObject:
   m_ObjectHideFlags: 0
