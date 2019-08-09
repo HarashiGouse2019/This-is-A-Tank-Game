@@ -9,6 +9,7 @@ public class Navigator : MonoBehaviour
 
     private void Start()
     {
+        #region Singleton
         if (navi == null)
         {
             navi = this;
@@ -17,6 +18,7 @@ public class Navigator : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        #endregion
         currentNode = "MainMenu";
     }
 
@@ -39,7 +41,7 @@ public class Navigator : MonoBehaviour
             {
                 next[i].SetActive(true);
                 previous.SetActive(false);
-                currentNode = next[i].ToString();
+                currentNode = next[i].name;
             }
 
         }

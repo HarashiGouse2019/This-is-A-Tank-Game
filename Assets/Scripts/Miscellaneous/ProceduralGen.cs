@@ -29,10 +29,6 @@ public class ProceduralGen : MonoBehaviour
     //Map of the day
     public bool mapOfTheDay;
 
-    //Dates
-    private DateTime newDate;
-    private DateTime oldDate = DateTime.MinValue;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +42,7 @@ public class ProceduralGen : MonoBehaviour
         
         Random.InitState(GenerateSeed());
 
-        if (genSeed.ToString().Length >= 2)
+        if (genSeed.ToString().Length > 2)
         {
             //Create 2d array
             gridSize = new GameObject[numCols, numRows];

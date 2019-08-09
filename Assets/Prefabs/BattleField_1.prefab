@@ -91,6 +91,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerups:
   - {fileID: 7593664109281265879, guid: 44b75c8580ae56e4d9f41b3c8ea7eb50, type: 3}
+  - {fileID: 7068666256966246686, guid: dec8556b534534349b323f09d2e26c4d, type: 3}
+  - {fileID: 9050368037059990442, guid: f9d75486e35edca42998db6531921685, type: 3}
   instanceCount: 0
 --- !u!1 &908230443260939693
 GameObject:
@@ -2488,6 +2490,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerups:
   - {fileID: 7593664109281265879, guid: 44b75c8580ae56e4d9f41b3c8ea7eb50, type: 3}
+  - {fileID: 7068666256966246686, guid: dec8556b534534349b323f09d2e26c4d, type: 3}
+  - {fileID: 9050368037059990442, guid: f9d75486e35edca42998db6531921685, type: 3}
   instanceCount: 0
 --- !u!114 &6488762632884461555
 MonoBehaviour:

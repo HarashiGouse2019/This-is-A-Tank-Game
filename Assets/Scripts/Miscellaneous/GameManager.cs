@@ -107,12 +107,6 @@ public class GameManager : MonoBehaviour
         player.gameObject.transform.position = spawnPosition;
     }
 
-    public void FindWaypoints()
-    {
-        GameObject[] wp = GameObject.FindGameObjectsWithTag("Waypoint");
-        waypoints.Add(wp[0].transform);
-    }
-
     public bool IsPlaying(PlayerMode mode = PlayerMode.SinglePlayer)
     {
         switch (gameplayStart)

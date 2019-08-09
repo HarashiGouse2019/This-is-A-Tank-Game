@@ -8,6 +8,9 @@ public class TankMover : MonoBehaviour
     public Transform tf; //Reference our transform
     public TankData data; //Reference our tank data component
 
+    public float vSpeed = 0f;
+    public float gravity = 90f;
+
     private void Start()
     {
         tf = GetComponent<Transform>(); //Grab our tranform and tank data
@@ -19,7 +22,13 @@ public class TankMover : MonoBehaviour
         Vector3 directionToMove = data.bodytf.TransformDirection(worldDirectionToMove);
 
         //Actually move
-        characterController.SimpleMove(directionToMove);
+        if (characterController.isGrounded) vSpeed = 0;
+        else
+        {
+            vSpeed -= gravity * Time.deltaTime;
+            directionToMove.y = vSpeed;
+        }
+        characterController.Move(directionToMove * Time.deltaTime);
 
     }
 

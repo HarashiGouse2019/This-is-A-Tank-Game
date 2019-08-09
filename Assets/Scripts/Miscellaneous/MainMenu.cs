@@ -46,7 +46,7 @@ public class MainMenu : MonoBehaviour
         canvasCamera.enabled = false;
         AudioManager.manager.Stop("BackgroundMusic");
         manager.gameplayStart = true;
-        navi.Navigate("Canvas", "GamePlay");
+        navi.Navigate("MainMenu", "GamePlay");
     }
 
     public void Options()
