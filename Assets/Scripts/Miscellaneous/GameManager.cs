@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     //Gameplay
     public bool gameplayStart = false;
 
+    //Enemies killed;
+    public int enemyKilled;
+
     //GUI
     public Canvas parentUi;
     public Image healthUI;
@@ -71,8 +74,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        healthUI.fillAmount = playerHealth; //The fill amount will equal to the player health (which will be a decmial values between 0 and 1)
-
         //Check if the player has reach the play room
         if (IsPlaying())
         {
@@ -132,6 +133,15 @@ public class GameManager : MonoBehaviour
             default:
                 parentUi.gameObject.SetActive(false);
                 return false;
+        }
+    }
+
+    public void RemoveMissingWayPoints()
+    {
+        ScanWayPoints scan = GetComponent<ScanWayPoints>();
+        for (int i = 0; i < scan.wayPoints.Count; i++)
+        {
+            scan.wayPoints.Remove(scan.wayPoints[i]);
         }
     }
 }

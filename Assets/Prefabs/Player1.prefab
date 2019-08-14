@@ -707,6 +707,7 @@ GameObject:
   - component: {fileID: 5307045552777981328}
   - component: {fileID: 5307045552777981331}
   - component: {fileID: 5616699930208827103}
+  - component: {fileID: 6638119585641897925}
   m_Layer: 0
   m_Name: SD_Tiger-I
   m_TagString: Player
@@ -765,7 +766,7 @@ MonoBehaviour:
   turretRotateSpeed: 65
   health: 0
   maxHealth: 100
-  damageVal: 5
+  damageVal: 34
   shieldVal: 1
   rapidFireVal: 1
   bodytf: {fileID: 5307045552777753013}
@@ -788,6 +789,8 @@ MonoBehaviour:
   characterController: {fileID: 5307045552777981328}
   tf: {fileID: 5307045552777753013}
   data: {fileID: 5307045552777981330}
+  vSpeed: 0
+  gravity: 90
 --- !u!143 &5307045552777981328
 CharacterController:
   m_ObjectHideFlags: 0
@@ -835,6 +838,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerups: []
   timer: {fileID: 5307045552777981331}
+--- !u!114 &6638119585641897925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5307045552777981333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ec66aff8df3a2429ad097c30bd8855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: {fileID: 5307045552777981331}
+  player: {fileID: 5307045552777981330}
 --- !u!1 &5307045552777981335
 GameObject:
   m_ObjectHideFlags: 0
@@ -1938,7 +1955,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7284665188158056593}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.082, y: -12.60907, z: 0.356}
+  m_LocalPosition: {x: -0.082, y: -40.60907, z: 0.356}
   m_LocalScale: {x: 0.009522927, y: 0.00940536, z: 0.00940536}
   m_Children:
   - {fileID: 5307045552777753013}

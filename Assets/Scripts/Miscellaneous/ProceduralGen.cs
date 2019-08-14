@@ -33,10 +33,9 @@ public class ProceduralGen : MonoBehaviour
     void Start()
     {
         proceduralGen = this;
-        Generate();
     }
 
-    void Generate()
+    public void Generate()
     {
         //Seed the random generator
         
@@ -76,7 +75,7 @@ public class ProceduralGen : MonoBehaviour
             }
 
             //After field is generated, add in player
-            GameManager.instance.SpawnOnSpot(GameManager.instance.players[0], new Vector3(-0.082f, -12.60907f, 0.356f));
+            GameManager.instance.SpawnOnSpot(GameManager.instance.players[0], new Vector3(-0.082f, -40.60907f, 0.356f));
             Camera_Follow.camerafollow.ScanForPlayer();
 
             //Scan for waypoints
@@ -149,5 +148,24 @@ public class ProceduralGen : MonoBehaviour
         int seedVal = Convert.ToInt32(seed);
 
         return seedVal;
+    }
+
+    public void EraseMap()
+    {
+        AIController[] enemiesToErase = FindObjectsOfType<AIController>();
+        //Clear out any existing enemies!
+        for (int currentEnemy = 0; currentEnemy < enemiesToErase.Length; currentEnemy++)
+        {
+            enemiesToErase[currentEnemy].ClearOut();
+        }
+
+        //And now clear out the map!
+        for (int currentCol = 0; currentCol < numCols; currentCol++)
+        {
+            for (int currentRow = 0; currentRow < numRows; currentRow++)
+            {
+                Destroy(gridSize[currentCol, currentRow]);
+            }
+        }
     }
 }

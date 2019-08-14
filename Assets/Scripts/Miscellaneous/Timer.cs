@@ -55,6 +55,7 @@ public class Timer : MonoBehaviour
                 break;
         }
         currentTime[index] = resetTime[index];
+        RunTimers();
     }
     /// <summary>
     /// Initialize all Pre-Defined Timers

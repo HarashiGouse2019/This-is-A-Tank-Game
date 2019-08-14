@@ -47,6 +47,21 @@ public class InputController : MonoBehaviour
         tankMover = pawn.GetComponent<TankMover>(); //Get the TankMover component
     }
 
+    private void Update()
+    {
+        //This is when we clean up after playing the game
+        if (gameObject.GetComponentInChildren<BurningFuel>().fuel <= 0 && FindObjectOfType<Navigator>().currentNode != "ResultScreen")
+        {
+            FindObjectOfType<Navigator>().Navigate("GamePlay", "ResultScreen");
+            MainMenu.menu.canvasCamera.enabled = true;
+            GameManager.instance.progen.EraseMap();
+            GameManager.instance.progen.enabled = false;
+            GameManager.instance.RemoveMissingWayPoints();
+            GameManager.instance.healthUI.fillAmount = (gameObject.GetComponentInChildren<BurningFuel>().fuel = 100) / 100;
+            Destroy(gameObject);
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {

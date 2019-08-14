@@ -49,6 +49,9 @@ public class PowerUpController : MonoBehaviour
 
         //Call the OnApply event
         powerUp.OnApply(gameObject, source);
+
+        //Pick Up Sound
+        AudioManager.manager.Play("PowerUpPickUpSound");
     }
 
     /// <summary>

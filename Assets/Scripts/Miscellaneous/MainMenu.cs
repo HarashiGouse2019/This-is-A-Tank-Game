@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
     public int seedVal;
     public float musicVal = 1;
     public float soundVal = 1;
+    public string setMode;
 
     private void Start()
     {
@@ -32,21 +33,25 @@ public class MainMenu : MonoBehaviour
         LoadPref();
     }
 
-    public void Play(string playerMode)
+    public void Play(string playerMode = null)
     {
+        playerMode = setMode;
         switch (playerMode)
         {
             case "Single":
                 manager.playermode = GameManager.PlayerMode.SinglePlayer;
+                setMode = "Single";
                 break;
             case "Multi":
                 manager.playermode = GameManager.PlayerMode.Multiplayer;
+                setMode = "Multi";
                 break;
         }
         canvasCamera.enabled = false;
         AudioManager.manager.Stop("BackgroundMusic");
         manager.gameplayStart = true;
         navi.Navigate("MainMenu", "GamePlay");
+        manager.progen.Generate();
     }
 
     public void Options()
@@ -56,7 +61,9 @@ public class MainMenu : MonoBehaviour
     }
 
     public void ReturnToMainMenu() {
-        navi.Navigate("OptionsMenu", "MainMenu");
+        if (Navigator.navi.currentNode == "ResultScreen") Navigator.navi.Navigate("ResultScreen", "MainMenu");
+        else if (Navigator.navi.currentNode == "OptionsMenu") Navigator.navi.Navigate("OptionsMenu", "MainMenu");
+
         LoadPref();
     }
 
@@ -97,6 +104,7 @@ public class MainMenu : MonoBehaviour
         //Put all sounds that are effects below
         AudioManager.manager.Volume("FireSound", soundVal);
         AudioManager.manager.Volume("TankEngineSound", soundVal);
+        AudioManager.manager.Volume("PowerUpPickUpSound", soundVal);
     }
 
     public void ToggleFullScreen()

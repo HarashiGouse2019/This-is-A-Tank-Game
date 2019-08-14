@@ -22,7 +22,7 @@ public class BulletMover : MonoBehaviour
     }
     private void Start()
     {
-        destroyDuration = data.shotsPerSecond; //Destroy duration will be based on how long it takes for us to shoot again
+        destroyDuration = 5f; //Destroy duration will be based on how long it takes for us to shoot again
     }
     private void Update()
     {

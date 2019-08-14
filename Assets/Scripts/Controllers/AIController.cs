@@ -58,10 +58,6 @@ public class AIController : MonoBehaviour
         {
             AIMain();
         }
-        if (pawn.health <= 0)
-        {
-            ChangeState(AiStates.Dead);
-        }
     }
 
     protected void AIMain()
@@ -117,6 +113,11 @@ public class AIController : MonoBehaviour
         {
             Debug.LogWarning("The SphereCollider used for the Hearing Radar must be set to Trigger.");
         }
+
+        if (pawn.health <= 0f)
+        {
+            ChangeState(AiStates.Dead);
+        }
     }
 
     public void ChangeState(AiStates newState)
@@ -149,39 +150,42 @@ public class AIController : MonoBehaviour
 
     public void Seek(Transform target)
     {
-        switch (currentAvoidState)
+        if (target != null)
         {
-            case AIAvoidState.Null:
-                //Chase
-                Vector3 targetVector = (target.position - pawn.bodytf.position).normalized;
-                pawn.mover.RotateTowards(targetVector);
-                pawn.mover.Move(Vector3.forward * pawn.moveSpeed * Time.deltaTime);
-                //If you are blocked, turn to avoid
-                if (IsBlocked())
-                {
-                    ChangeAvoidState(AIAvoidState.TurnToAvoid);
-                }
-                break;
-            case AIAvoidState.TurnToAvoid:
-                pawn.mover.Rotate(pawn.rotateSpeed * Time.deltaTime);
-                //If you are not block, move to avoid
-                if (!IsBlocked())
-                {
-                    ChangeAvoidState(AIAvoidState.MoveToAvoid);
-                }
-                break;
-            case AIAvoidState.MoveToAvoid:
-                //Move foward
-                pawn.mover.Move(Vector3.forward * Time.deltaTime);
-                //If time is up, there's nothing in your way
-                if (timer.currentTime[1] > startAvoidTime + avoidMoveTime)
-                {
-                    timer.ResetTime(1, false);
-                    ChangeAvoidState(AIAvoidState.Null);
-                }
-                break;
-            default:
-                break;
+            switch (currentAvoidState)
+            {
+                case AIAvoidState.Null:
+                    //Chase
+                    Vector3 targetVector = (target.position - pawn.bodytf.position).normalized;
+                    pawn.mover.RotateTowards(targetVector);
+                    pawn.mover.Move(Vector3.forward * pawn.moveSpeed * Time.deltaTime);
+                    //If you are blocked, turn to avoid
+                    if (IsBlocked())
+                    {
+                        ChangeAvoidState(AIAvoidState.TurnToAvoid);
+                    }
+                    break;
+                case AIAvoidState.TurnToAvoid:
+                    pawn.mover.Rotate(pawn.rotateSpeed * Time.deltaTime);
+                    //If you are not block, move to avoid
+                    if (!IsBlocked())
+                    {
+                        ChangeAvoidState(AIAvoidState.MoveToAvoid);
+                    }
+                    break;
+                case AIAvoidState.MoveToAvoid:
+                    //Move foward
+                    pawn.mover.Move(Vector3.forward * Time.deltaTime);
+                    //If time is up, there's nothing in your way
+                    if (timer.currentTime[1] > startAvoidTime + avoidMoveTime)
+                    {
+                        timer.ResetTime(1, false);
+                        ChangeAvoidState(AIAvoidState.Null);
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -283,6 +287,8 @@ public class AIController : MonoBehaviour
     public virtual void Dead()
     {
         isDead = true;
+        GameManager.instance.enemyKilled++;
+        Destroy(pawn.gameObject);
     }
     public virtual bool CanSee()
     {
@@ -326,5 +332,11 @@ public class AIController : MonoBehaviour
                 wayPoints.Add(GameManager.instance.progen.scan.wayPoints[i].transform);
             }
         }
+    }
+
+    public void ClearOut()
+    {
+        //This is at the end of the game to clear out the room
+        Destroy(gameObject);
     }
 }

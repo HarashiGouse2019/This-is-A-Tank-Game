@@ -397,6 +397,10 @@ MonoBehaviour:
   pointOfFire: {fileID: 5630229787250813390}
   bulletPrefab: {fileID: 7222445259909941757, guid: 7028ded00d4341542b5159c14b0250f0,
     type: 3}
+  data: {fileID: 5939922205501676396}
+  canShoot: 1
+  timer: {fileID: 5854160323375015980}
+  waitVal: 1
 --- !u!114 &5854160323375015980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,9 +413,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03692d274b079fe4181dda7b1a4965b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTime: 0
-  resetTime: 0
-  timeStarted: 0
+  currentTime: []
+  resetTime: []
+  timeStarted: 
 --- !u!114 &5939922205501676396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,7 +435,9 @@ MonoBehaviour:
   turretRotateSpeed: 0
   health: 0
   maxHealth: 0
-  damage: 0
+  damageVal: 0
+  shieldVal: 0
+  rapidFireVal: 0
   bodytf: {fileID: 400012}
   turrettf: {fileID: 400012}
   mover: {fileID: 0}

@@ -43,13 +43,13 @@ public class TankData : MonoBehaviour
             case ControlMode.Computer:       //If the enmey is hit with our bullet, have it take the player's damage
                 if (collision.gameObject.name == "SD_Bullet(Clone)")
                 {
-                    health -= damageVal;
+                    health -= GameManager.instance.players[0].gameObject.GetComponentInChildren<TankData>().damageVal;
                 }
                 break;
             case ControlMode.Player:
                 if (collision.gameObject.name == "EnemyBullet(Clone)")
                 {
-                    health -= damageVal;
+                    GameManager.instance.players[0].gameObject.GetComponentInChildren<TankData>().health -= damageVal;
                 }
                 break;
         }

@@ -359,7 +359,7 @@ Transform:
   m_GameObject: {fileID: 4864605336003742637}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: -1341, y: 4776.54, z: -643}
-  m_LocalScale: {x: 3.1901808, y: 2.3513398, z: 3.1507955}
+  m_LocalScale: {x: 5, y: 4, z: 5}
   m_Children:
   - {fileID: 4864605336004106123}
   - {fileID: 7094690248302224887}
@@ -414,6 +414,8 @@ MonoBehaviour:
   characterController: {fileID: 4864605335989698145}
   tf: {fileID: 4864605336004106125}
   data: {fileID: 4864605336003710266}
+  vSpeed: 0
+  gravity: 90
 --- !u!114 &4864605336003710266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,15 +429,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 65
-  reverseMoveSpeed: 0
+  reverseMoveSpeed: 65
   shotsPerSecond: 1
   rotateSpeed: 100
   turretRotateSpeed: 0
   health: 0
   maxHealth: 100
-  damageVal: 0
-  shieldVal: 0
-  rapidFireVal: 0
+  damageVal: 1
+  shieldVal: 1
+  rapidFireVal: 1
   bodytf: {fileID: 4864605336004106125}
   turrettf: {fileID: 4864605336004106125}
   mover: {fileID: 4864605336003710264}
