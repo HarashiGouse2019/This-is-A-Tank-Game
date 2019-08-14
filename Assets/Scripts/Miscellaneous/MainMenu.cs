@@ -35,18 +35,17 @@ public class MainMenu : MonoBehaviour
 
     public void Play(string playerMode = null)
     {
-        playerMode = setMode;
-        switch (playerMode)
+        setMode = playerMode;
+        switch (setMode)
         {
             case "Single":
                 manager.playermode = GameManager.PlayerMode.SinglePlayer;
-                setMode = "Single";
                 break;
             case "Multi":
                 manager.playermode = GameManager.PlayerMode.Multiplayer;
-                setMode = "Multi";
                 break;
         }
+        canvasCamera.backgroundColor = new Color(0f, 0f ,0f);
         canvasCamera.enabled = false;
         AudioManager.manager.Stop("BackgroundMusic");
         manager.gameplayStart = true;

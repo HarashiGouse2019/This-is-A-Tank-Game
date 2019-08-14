@@ -336,7 +336,7 @@ public class AIController : MonoBehaviour
 
     public void ClearOut()
     {
-        //This is at the end of the game to clear out the room
+        //We destory our object
         Destroy(gameObject);
     }
 }

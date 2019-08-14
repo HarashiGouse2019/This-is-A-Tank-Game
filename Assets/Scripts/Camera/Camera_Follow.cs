@@ -18,7 +18,7 @@ public class Camera_Follow : MonoBehaviour
 
     private readonly bool lookAt = true;
 
-    private void Start()
+    private void Awake()
     {
         if (camerafollow == null)
         {
