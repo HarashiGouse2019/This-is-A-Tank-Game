@@ -75,7 +75,7 @@ public class ProceduralGen : MonoBehaviour
             }
 
             //After field is generated, add in player
-            GameManager.instance.SpawnOnSpot(GameManager.instance.players[0], new Vector3(-0.082f, -40.60907f, 0.356f));
+            GameManager.instance.SpawnOnSpot(GameManager.instance.players[0], new Vector3(-0.082f, 50, 0.356f));
             Camera_Follow.camerafollow.ScanForPlayer();
 
             //Scan for waypoints

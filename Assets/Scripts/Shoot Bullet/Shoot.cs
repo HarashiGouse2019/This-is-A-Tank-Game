@@ -9,6 +9,7 @@ public class Shoot : MonoBehaviour
     public Transform pointOfFire; //The transform of our point of fire
     public BulletMover bulletPrefab; //Reference the BulletMover component
     public TankData data;
+    public GameObject litteExplosion;
     public bool canShoot = true;
  
     public Timer timer;
@@ -26,6 +27,7 @@ public class Shoot : MonoBehaviour
         if (canShoot)
         {
             Instantiate(prefab); //Create our bullet prefap
+            Instantiate(litteExplosion, pointOfFire.position, pointOfFire.rotation);
             AudioManager.manager.Play("FireSound");
             canShoot = false;
         }

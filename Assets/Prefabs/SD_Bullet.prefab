@@ -103,8 +103,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2949198690053744629}
-  m_LocalRotation: {x: -0, y: 0.099234074, z: -0, w: -0.9950642}
-  m_LocalPosition: {x: 24.52374, y: 2.1328049, z: -330.28452}
+  m_LocalRotation: {x: -0, y: -0.9997524, z: -0, w: 0.022251425}
+  m_LocalPosition: {x: -57.069645, y: -9549.986, z: -21.995073}
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_Children:
   - {fileID: 2949198690053848023}
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8569577d94721f14aad223247767a71e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 160
+  bulletSpeed: 120
   tf: {fileID: 2949198690053848021}
   shoot: {fileID: 0}
   timer: {fileID: 0}

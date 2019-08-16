@@ -44,6 +44,8 @@ public class AIController : MonoBehaviour
     public AiAttackState currentAttackState = AiAttackState.Null;
     public float avoidMoveTime;
 
+    public GameObject explosionParticle;
+
     private void Start()
     {
         hearingRadar = GetComponentInChildren<SphereCollider>();
@@ -286,9 +288,13 @@ public class AIController : MonoBehaviour
     }
     public virtual void Dead()
     {
-        isDead = true;
-        GameManager.instance.enemyKilled++;
-        Destroy(pawn.gameObject);
+        if (isDead == false)
+        {
+            Instantiate(explosionParticle, pawn.gameObject.transform.position, pawn.gameObject.transform.rotation);
+            GameManager.instance.enemyKilled++;
+            isDead = true;
+            Destroy(pawn.gameObject);
+        }
     }
     public virtual bool CanSee()
     {
